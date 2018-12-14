@@ -35,7 +35,7 @@ class TodoList extends React.Component {
       updateWhere(
         'todos', 
         todo => todo.id === id,
-        todoToUpdate => ({ ...todoToUpdate, active: !todoToUpdate.active })
+        todoToUpdate => ({ ...todoToUpdate, isComplete: !todoToUpdate.isComplete })
       )
     )
   }
