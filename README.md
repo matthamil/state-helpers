@@ -8,9 +8,6 @@ Helpers for common operations on state for class components in React.
 * Automatic currying
 
 ```js
-const updateTodoWhere = updateWhere('todos'); // returns fn until all arguments are passed
-const updateTodoWithId = updateTodoWhere(todo => todo.id === 3);
-
 const state = {
   todos: [ 
     { id: 1, author: "Greg", content: "Clean dishes" },
@@ -18,6 +15,8 @@ const state = {
   ]
 };
 
+const updateTodoWhere = updateWhere('todos'); // returns fn until all arguments are passed
+const updateTodoWithId = updateTodoWhere(todo => todo.id === 3);
 const updatedState = updateTodoWithId(todo => ({ ...todo, author: "Matt" })(state);
 ```
 
