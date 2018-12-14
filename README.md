@@ -9,9 +9,16 @@ Helpers for common operations on state for class components in React.
 
 ```js
 const updateTodoWhere = updateWhere('todos'); // returns fn until all arguments are passed
-const updateTodoWithId = updateTodoWhere(todo => todo.id === id);
+const updateTodoWithId = updateTodoWhere(todo => todo.id === 3);
 
-const updatedState = updateTodoWithId(todo => ({ ...todo, author: "Matt" });
+const state = {
+  todos: [ 
+    { id: 1, author: "Greg", content: "Clean dishes" },
+    { id: 3, author: "Greg", content: "Fold laundry" }
+  ]
+};
+
+const updatedState = updateTodoWithId(todo => ({ ...todo, author: "Matt" })(state);
 ```
 
 ## Usage
