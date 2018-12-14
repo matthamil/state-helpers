@@ -37,7 +37,7 @@ class TodoList extends React.Component {
         todo => todo.id === id,
         todoToUpdate => ({ ...todoToUpdate, isComplete: !todoToUpdate.isComplete })
       )
-    )
+    );
   }
 
   render() {
