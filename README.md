@@ -10,6 +10,8 @@ Helpers for common operations on state for class components in React.
 ```js
 const updateTodoWhere = updateWhere('todos'); // returns fn until all arguments are passed
 const updateTodoWithId = updateTodoWhere(todo => todo.id === id);
+
+const updatedState = updateTodoWithId(todo => ({ ...todo, author: "Matt" });
 ```
 
 ## Usage
