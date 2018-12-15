@@ -1,8 +1,13 @@
 {
   "name": "state-helpers",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.1",
+  "author": "Matt Hamil <mhamildev@gmail.com> (http://matthamil.me)",
+  "main": "state-helpers",
   "license": "MIT",
+  "homepage": "https://github.com/matthamil/state-helpers",
+  "bugs": {
+    "url": "https://github.com/matthamil/state-helpers/issues"
+  },
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
     "source-map-loader": "^0.2.4",
