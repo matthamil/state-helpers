@@ -46,13 +46,13 @@ describe("toggle", () => {
     const state = { hello: "world" };
     const newState = toggle("isActive")(state);
 
-    expect(newState).toEqual(state);
+    expect(newState).toBe(state);
   });
 
   it("should return undefined when state is undefined", () => {
     const state: undefined = undefined;
     const newState = toggle("isActive")(state);
 
-    expect(newState).toEqual(undefined);
+    expect(newState).toBe(undefined);
   });
 });
