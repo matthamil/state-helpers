@@ -10,7 +10,7 @@ describe("toggle", () => {
 
   it("should not mutate the existing object", () => {
     const state = { isActive: true };
-    const newState = toggle("isActive")(state);
+    toggle("isActive")(state);
 
     expect(state.isActive).toBe(true);
   });
