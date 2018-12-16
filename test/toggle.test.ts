@@ -42,10 +42,17 @@ describe("toggle", () => {
     expect(newState).toMatchObject(stateWithoutIsActive);
   });
 
-  // it('should return state when toggling a key in state that does not exist', () => {
-  //   const state = {};
-  //   const newState = toggle('isActive')(state);
+  it("should return state when toggling a key in state that does not exist", () => {
+    const state = { hello: "world" };
+    const newState = toggle("isActive")(state);
 
-  //   expect(newState).toEqual(state);
-  // })
+    expect(newState).toEqual(state);
+  });
+
+  it("should return undefined when state is undefined", () => {
+    const state: undefined = undefined;
+    const newState = toggle("isActive")(state);
+
+    expect(newState).toEqual(undefined);
+  });
 });
