@@ -22,6 +22,26 @@ describe("toggle", () => {
     expect(newState.isActive).toBe(false);
   });
 
+  it("should not change any other values in state", () => {
+    const state = {
+      isActive: true,
+      name: "Bob Ross",
+      talent: "painting",
+      favoriteColors: ["blue", "green"],
+      nestedObj: {
+        a: "b",
+        c: "d",
+        vals: [1, 2, 3]
+      }
+    };
+
+    const { isActive, ...stateWithoutIsActive } = state;
+
+    const newState = toggle("isActive")(state);
+
+    expect(newState).toMatchObject(stateWithoutIsActive);
+  });
+
   // it('should return state when toggling a key in state that does not exist', () => {
   //   const state = {};
   //   const newState = toggle('isActive')(state);
