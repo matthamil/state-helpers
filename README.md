@@ -9,6 +9,12 @@ Immutable helpers for performing common operations on data within an object.
 - Immutably create a new object for each common operation performed on data within objects
 - Automatic currying
 
+## Install
+
+```sh
+# This package is not yet published.
+```
+
 ## Usage
 
 ```jsx
