@@ -121,7 +121,7 @@ const newState = removeWhere("users", didLastLoginYesterday)(state);
 
 ## [updateWhere](src/updateWhere.ts)
 
-Update any _n_ number of items in a list in state at a given key. An updater function is mapped over each item in the list.
+Update any _n_ number of items in a list in state at a given key. The updater provided is used to create new values in the list.
 
 ```js
 const state = {
