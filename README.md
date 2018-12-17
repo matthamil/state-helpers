@@ -193,6 +193,7 @@ const state = undefined;
 const capitalize = str => str.toUpperCase();
 
 const newState = atKey("favoriteMovie", capitalize)(state);
+// undefined
 ```
 
 ## [dangerouslyAtKey](src/utils/dangerouslyAtKey.ts)
