@@ -65,6 +65,15 @@ class TodoList extends React.Component {
 
 ## Documentation
 
+When a key is passed into any helper that does not exist in the object, the original object is returned and no other operations are performed.
+
+```js
+const state = { favoriteFood: "cookies" };
+const newState = toggle("isActive")(state); // "isActive" is not a key that exists in the state object
+
+console.log(newState === state); // true
+```
+
 ## [toggle](src/toggle.ts)
 
 Toggle a boolean value at a given key in an object.
@@ -120,4 +129,83 @@ const square = n => n * n;
 
 const newState = updateWhere("numbers", isEven, square)(state);
 // { numbers: [ 1, 4, 3, 16 ] }
+```
+
+## [atKey](src/utils/atKey.ts)
+
+Perform a transformation on a value in an object at a given key. If the given key does not exist, the original object is returned.
+
+```js
+const state = {
+  user: {
+    name: "Matt",
+    favoriteMovie: "The Big Lebowski"
+  }
+};
+
+const newState = atKey("user", user => ({
+  ...user,
+  name: user.name.toUpperCase()
+}))(state);
+// { user: { name: "MATT", favoriteMovie: "The Big Lebowski" } }
+```
+
+If you have nested objects, you can perform transformations within them without worrying about object spread syntax to ensure immutability.
+
+```js
+const state = {
+  user: {
+    name: "Matt",
+    favoriteMovie: "The Big Lebowski"
+  }
+};
+
+const capitalize = str => str.toUpperCase();
+
+const newState = atKey('user', atKey('favoriteMovie', capitalize)))(state);
+// { user: { name: "Matt", favoriteMovie: "THE BIG LEBOWSKI" } }
+```
+
+When the key in the object does not exist, the original object is returned.
+
+```js
+const state = { name: "Matt" };
+
+const capitalize = str => str.toUpperCase();
+
+const newState = atKey("favoriteMovie", capitalize)(state);
+// { name: "Matt" }
+```
+
+When the object is undefined, `atKey` will also return `undefined`.
+
+```js
+const state = undefined;
+
+const capitalize = str => str.toUpperCase();
+
+const newState = atKey("favoriteMovie", capitalize)(state);
+```
+
+## [dangerouslyAtKey](src/utils/dangerouslyAtKey.ts)
+
+Perform a transformation on a value in an object at a given key. If the given key does not exist, the transformation function is still called. If you need to ensure that the key exists before performing the operation, use [atKey](#atKey).
+
+This should only be used in cases where you are absolutely certain that you do not need to ensure that the key exists.
+
+```js
+const state = { name: "Matt" };
+
+function getFavoriteMovieIfDoesNotExist(movie) {
+  if (!movie) {
+    return "The Big Lebowski";
+  }
+  return movie;
+}
+
+const newState = dangerouslyAtKey(
+  "favoriteMovie",
+  getFavoriteMovieIfDoesNotExist
+)(state);
+// { name: "Matt", favoriteMovie: "The Big Lebowski" }
 ```
