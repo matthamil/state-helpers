@@ -133,7 +133,7 @@ const newState = updateWhere("numbers", isEven, square)(state);
 
 ## [atKey](src/utils/atKey.ts)
 
-Perform a transformation on a value in an object at a given key. If the given key does not exist, the original object is returned.
+Perform a transformation on a value in an object at a given key. If the given key does not exist, the original object is returned. All of the helpers use this internally. Use this function to create your own helper to immutably update an object property.
 
 ```js
 const state = {
