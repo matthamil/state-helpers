@@ -21,6 +21,10 @@ Immutable helpers for performing common operations on data within an object.
 import { toggle, append, removeWhere, updateWhere } from "state-helpers";
 
 class TodoList extends React.Component {
+  state = {
+    todos: [ { id: 1, text: "Clean office", isComplete: false } ]
+  };
+
   toggleShowList = () => {
     this.setState(toggle("isShowingTodos"));
   };
