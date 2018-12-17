@@ -1,12 +1,21 @@
-import { curry, lensProp, reject } from "ramda";
-import { overIf } from "./utils/overIf";
+import { curry, reject } from "ramda";
+import { atKey } from "./utils/atKey";
 
 type State = Record<string, any>;
 type StateUpdater = (state: State) => State;
 type Predicate = (value: any) => boolean;
 
+/**
+ * @description
+ *   Find and replace all items in a list in state when the predicate returns true
+ *
+ *   To remove only the first item in the list where the predicate returns true, use removeFirst
+ * @param key - state key
+ * @param predicate - comparator function that is called for each item in the list at key
+ * @returns state
+ */
 function _removeWhere(key: string, predicate: Predicate): StateUpdater {
-  return overIf(lensProp(key), reject(predicate));
+  return atKey(key, reject(predicate));
 }
 
 export const removeWhere = curry(_removeWhere);

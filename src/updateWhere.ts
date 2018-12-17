@@ -1,6 +1,6 @@
-import { lensProp, when, map, curry } from "ramda";
-import { overIf } from "./utils/overIf";
+import { curry } from "ramda";
 import { alter } from "./utils/alter";
+import { atKey } from "./utils/atKey";
 
 type State = Record<string, any>;
 type StateUpdater = (state: State) => State;
@@ -12,7 +12,7 @@ function _updateWhere(
   predicate: Predicate,
   updater: Updater
 ): StateUpdater {
-  return overIf(lensProp(key), alter(predicate, updater));
+  return atKey(key, alter(predicate, updater));
 }
 
 export const updateWhere = curry(_updateWhere);

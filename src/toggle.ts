@@ -1,9 +1,9 @@
-import { lensProp, not } from "ramda";
-import { overIf } from "./utils/overIf";
+import { not } from "ramda";
+import { atKey } from "./utils/atKey";
 
 type State = Record<string, any>;
 type StateUpdater = (state: State) => State;
 
 export function toggle(key: string): StateUpdater {
-  return overIf(lensProp(key), not);
+  return atKey(key, not);
 }
