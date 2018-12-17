@@ -4,7 +4,7 @@ Immutable helpers for performing common operations on data within an object.
 
 ## Goals
 
-- Common CRUD-like behaviors for state.
+- Immutably create a new object for each common operation performed on data within objects
 - Automatic currying
 
 ## Usage
@@ -67,7 +67,7 @@ class TodoList extends React.Component {
 
 ## [toggle](src/toggle.ts)
 
-Toggle a boolean value at a given key in state.
+Toggle a boolean value at a given key in an object.
 
 ```js
 const state = { isActive: false };
@@ -78,7 +78,7 @@ const newState = toggle("isActive")(state);
 
 ## [append](src/append.ts)
 
-Add an item to the end of a list at a given key in state.
+Add an item to the end of a list at a given key in an object.
 
 ```js
 const state = { colors: ["red", "green", "blue"] };
@@ -89,7 +89,7 @@ const newState = append("colors", "yellow")(state);
 
 ## [removeWhere](src/removeWhere.ts)
 
-Remove any _n_ number of items from a list in state at a given key.
+Remove any _n_ number of items from a list in an object at a given key.
 
 ```js
 const state = {
@@ -108,7 +108,7 @@ const newState = removeWhere("users", didLastLoginYesterday)(state);
 
 ## [updateWhere](src/updateWhere.ts)
 
-Update any _n_ number of items in a list in state at a given key. The updater provided is used to create new values in the list.
+Update any _n_ number of items in a list in an object at a given key. The updater provided is used to create new values in the list.
 
 ```js
 const state = {
