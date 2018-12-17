@@ -7,7 +7,7 @@ type Predicate = (value: any) => boolean;
 
 /**
  * @description
- *   Find and replace all items in a list in state when the predicate returns true
+ *   Find and remove all items in a list in state where the predicate returns true
  *
  *   To remove only the first item in the list where the predicate returns true, use removeFirst
  * @param key - state key
