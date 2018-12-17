@@ -65,7 +65,7 @@ class TodoList extends React.Component {
 
 ## Documentation
 
-When a key is passed into any helper that does not exist in the object, the original object is returned and no other operations are performed.
+When a key is passed into any helper that does not exist in the object, the original object is returned and no other operations are performed. This allows for safe operations without `undefined` or `null` checks. The library does provide an escape hatch (see [dangerouslyAtKey](#dangerouslyAtKey)) if you do want to perform an operation on a possibly `undefined` or `null` value.
 
 ```js
 const state = { favoriteFood: "cookies" };
