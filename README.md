@@ -1,6 +1,6 @@
 # state-helpers
 
-Helpers for common operations on state for class components in React.
+Immutable helpers for performing common operations on data within an object.
 
 ## Goals
 
