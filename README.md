@@ -177,7 +177,7 @@ const newState = atKey("favoriteMovie", capitalize)(state);
 // { name: "Matt" }
 ```
 
-When the object is undefined, `atKey` will also return `undefined`.
+When the object is `undefined`, `atKey` will also return `undefined`.
 
 ```js
 const state = undefined;
