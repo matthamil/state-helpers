@@ -311,3 +311,27 @@ const newState = addFavoriteMovieReducer(state, action);
 ```
 
 Since `atKey` is a curried function, you can partially apply the key names that you wish to perform an operation on. The composition of these `atKey` functions can be exported and used within multiple reducers if you have reducers that perform operations on the same data in state (e.g. a reducer that adds to a list and another reducer that removes an item from the same list). You can compose *n* number of `atKey` functions to immutably update a field at *n* depth in state.
+
+## Debugging custom reducer helpers
+
+If you use `compose` from `ramda` or similar libraries, you can debug your helper by inserting a logger function between any of the `atKey` functions. `ramda` provides a [`tap`](https://ramdajs.com/docs/#tap) function runs the given function with the supplied object, then returns the object. We can use `tap` to write a logger function to use within the function composition. We will write our own `tap` in this example:
+
+```js
+const tap = fn => val => {
+  fn(val);
+  return val;
+};
+
+const log = message => arg => console.log(message, arg);
+
+// immutably perform update at state.user.movies.favoriteMovies
+const atFavoriteMovies = compose(
+  tap(log("End state")), 
+  atKey("user"),
+  tap(log("Before keying into user")),
+  atKey("movies"),
+  tap(log("Before keying into movies")),
+  atKey("favoriteMovies"),
+  tap(log("Before keying into favorite movies"))
+);
+```
