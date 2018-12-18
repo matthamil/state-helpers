@@ -314,7 +314,7 @@ Since `atKey` is a curried function, you can partially apply the key names that 
 
 ## Debugging custom reducer helpers
 
-If you use `compose` from `ramda` or similar libraries, you can debug your helper by inserting a logger function between any of the `atKey` functions. `ramda` provides a [`tap`](https://ramdajs.com/docs/#tap) function runs the given function with the supplied object, then returns the object. We can use `tap` to write a logger function to use within the function composition. We will write our own `tap` in this example:
+If you use `compose` from `ramda` or similar libraries, you can debug your helper by inserting a logger function between any of the `atKey` functions. `ramda` provides a [`tap`](https://ramdajs.com/docs/#tap) function which runs the given function with the supplied object, then returns the object. We can use `tap` to write a logger function to use between our arguments inside `compose`. We will write our own `tap` in this sample:
 
 ```js
 const tap = fn => val => {
