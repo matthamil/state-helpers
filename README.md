@@ -1,6 +1,6 @@
 # state-helpers
 
-[![CircleCI](https://circleci.com/gh/matthamil/state-helpers/tree/master.svg?style=svg)](https://circleci.com/gh/matthamil/state-helpers/tree/master)
+[![CircleCI](https://circleci.com/gh/matthamil/state-helpers/tree/master.svg?style=svg)](https://circleci.com/gh/matthamil/state-helpers/tree/master) [![Greenkeeper badge](https://badges.greenkeeper.io/matthamil/state-helpers.svg)](https://greenkeeper.io/)
 
 Immutable helpers for performing common operations on data within an object.
 
