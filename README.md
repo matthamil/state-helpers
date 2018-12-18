@@ -22,7 +22,8 @@ import { toggle, append, removeWhere, updateWhere } from "state-helpers";
 
 class TodoList extends React.Component {
   state = {
-    todos: [ { id: 1, text: "Clean office", isComplete: false } ]
+    todos: [ { id: 1, text: "Clean office", isComplete: false } ],
+    isShowingTodos: true
   };
 
   toggleShowList = () => {
@@ -274,6 +275,7 @@ import { atKey } from "state-helpers";
 
 const atFavoriteMovies = compose(
   atKey("user"),
+  atKey("movies"),
   atKey("favoriteMovies")
 );
 
