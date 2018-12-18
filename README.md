@@ -222,3 +222,86 @@ const newState = dangerouslyAtKey(
 )(state);
 // { name: "Matt", favoriteMovie: "The Big Lebowski" }
 ```
+
+## Reducers for Redux
+
+You can use `atKey` to remove some of the cruft that comes with using object spread syntax at each level of state to ensure the reducer performs an immutable update.
+
+```js
+// Before
+const addFavoriteMovieReducer = (state, action) => {
+  const { movie } = action.payload;
+  
+  const favoriteMovies = (state && state.user && state.user.movies) || [];
+  
+  return {
+    ...state,
+    user: {
+      ...(state && state.user),
+      favoriteMovies: [
+          ...favoriteMovies,
+          movie
+      ]
+    }
+  };
+};
+
+const state = {
+  user: {
+    name: "Matt",
+    movies: {
+      favoriteGenre: "comedy",
+      favoriteMovies: [ "The Big Lebowski", "Pulp Fiction" ]
+    }
+  }
+};
+
+const action = {
+  type: "MOVIE/ADD_FAVORITE",
+  payload: { movie: "Space Balls" }
+};
+
+const newState = addFavoriteMovieReducer(state, action);
+// newState.user.movies.favoriteMovies === [ "The Big Lebowski", "Pulp Fiction", "Space Balls" ]
+```
+
+This reducer can be rewritten as:
+
+```js
+// After
+import { compose } from "ramda";
+import { atKey } from "state-helpers";
+
+const atFavoriteMovies = compose(
+  atKey("user"),
+  atKey("favoriteMovies")
+);
+
+const addMovie = action => movies => [ ...movies, action.payload.movie ];
+
+const addFavoriteMovieReducer = (state, action) => {
+  const addFavoriteMovieFromAction = addMovie(action);
+  const addFavoriteMovie = atFavoriteMovies(addFavoriteMovieFromAction);
+  return addFavoriteMovie(state);
+};
+
+const state = {
+  user: {
+    name: "Matt",
+    movies: {
+      favoriteGenre: "comedy",
+      favoriteMovies: [ "The Big Lebowski", "Pulp Fiction" ]
+    }
+  }
+};
+
+const action = {
+  type: "MOVIE/ADD_FAVORITE",
+  payload: { movie: "Space Balls" }
+};
+
+const newState = addFavoriteMovieReducer(state, action);
+// newState.user.movies.favoriteMovies === [ "The Big Lebowski", "Pulp Fiction", "Space Balls" ]
+```
+
+Since `atKey` is a curried function, you can partially apply the key names that you wish to perform an operation on. The composition of these `atKey` functions can be exported and used within multiple reducers if you have reducers that perform operations on the same data in state (e.g. a reducer that adds to a list and another reducer that removes an item from the same list). You can compose *n* number of `atKey` functions to immutably update a field at *n* depth in state.
