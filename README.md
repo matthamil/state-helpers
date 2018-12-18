@@ -233,16 +233,19 @@ You can use `atKey` to remove some of the cruft that comes with using object spr
 const addFavoriteMovieReducer = (state, action) => {
   const { movie } = action.payload;
   
-  const favoriteMovies = (state && state.user && state.user.movies) || [];
+  const favoriteMovies = (state && state.user && state.user.movies && state.user.movies.favoriteMovies) || [];
   
   return {
     ...state,
     user: {
       ...(state && state.user),
-      favoriteMovies: [
-          ...favoriteMovies,
-          movie
-      ]
+      movies: {
+        ...(state && state.user && state.user.movies),
+        favoriteMovies: [
+            ...favoriteMovies,
+            movie
+        ]
+      }
     }
   };
 };
@@ -273,6 +276,7 @@ This reducer can be rewritten as:
 import { compose } from "ramda";
 import { atKey } from "state-helpers";
 
+// immutably perform update at state.user.movies.favoriteMovies
 const atFavoriteMovies = compose(
   atKey("user"),
   atKey("movies"),
