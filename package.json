@@ -9,7 +9,7 @@
     "url": "https://github.com/matthamil/state-helpers/issues"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.0",
+    "@types/jest": "^25.2.2",
     "@types/ramda": "types/npm-ramda#dist",
     "awesome-typescript-loader": "^5.2.1",
     "husky": "^2.0.0",
